@@ -1,0 +1,33 @@
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: quarkus-todo-chatbot
+  description: A cool quarkus app
+  annotations:
+    argocd/app-name: quarkus-todo-chatbot-bootstrap
+    backstage.io/kubernetes-id: quarkus-todo-chatbot
+    # It must be commented otherwise we cannot see the Tekton pipelines resources
+    # backstage.io/kubernetes-namespace: iocanel
+    backstage.io/source-location: url:https://github.com/iocanel/quarkus-todo-chatbot
+    # The janus-idp.io/tekton allows to set the boolean value: isTektonCIAvailable which is used within the UI to enable/disable the TektonCIComponent
+    janus-idp.io/tekton: quarkus-todo-chatbot
+    backstage.io/techdocs-ref: dir:.
+    github.com/project-slug: iocanel/
+    # See: topology annotation: https://github.com/janus-idp/backstage-plugins/tree/main/plugins/topology
+    app.kubernetes.io/name: quarkus
+    app.quarkus.io/quarkus-version: 3.14.4
+  tags:
+    - java
+    - quarkus
+  links:
+    - url: https://quarkus-todo-chatbot-iocanel.apps.qshift.snowdrop.dev/
+      title: Quarkus application url
+      icon: web
+spec:
+  type: service
+  lifecycle: production
+  owner: user:guest
+  dependsOn:
+    - component:default/quarkus-todo-app
+  consumesApis: [api:default/quarkus-todo-app-api]

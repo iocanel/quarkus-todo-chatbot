@@ -1,0 +1,21 @@
+app:
+  name: quarkus-todo-chatbot
+  namespace: iocanel
+  virtualMachineName: quarkus-dev
+  virtualMachineNamespace: test1
+  cluster:    #
+
+build:
+  native: false
+
+git:
+  branch: main
+  repo: github.com
+  org: iocanel
+  name: quarkus-todo-chatbot
+
+image:
+  url: quay.io/ikanello/quarkus-todo-chatbot
+  registry:  # NOT USED
+  organization:  # NOT USED
+  name:  # NOT USED
